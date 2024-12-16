@@ -72,53 +72,43 @@ void GolfBall::Init()
 
 void GolfBall::Update()
 {
-	// ワールド行列から前方ベクトルを取得する例
-	// オブジェクトの変換情報（スケーリング、回転、平行移動など）をもとにワールド行列を生成
-	DirectX::XMFLOAT4X4 worldMatrix;
-	DirectX::XMStoreFloat4x4(&worldMatrix, DirectX::XMMatrixIdentity()); // 空の初期化例
-	DirectX::SimpleMath::Vector3 forward = DirectX::XMVectorSet(worldMatrix._31, worldMatrix._32, worldMatrix._33, 0.0f);
-	//lookDirection = m_Position * DirectX::SimpleMath::Vector3{ 1.0f,0.0f,1.0f };
-	lookDirection = m_Position * forward;
+	// 前方ベクトルを計算
+	forward = DirectX::SimpleMath::Vector3(worldMatrix._31, worldMatrix._32, worldMatrix._33);
+	forward.Normalize(); // 正規化
+	Vector3 right = forward.Cross(Vector3::Up); // 右方向ベクトル
+	right.Normalize();
+	float speed = 0.01f;
 
+	// ボールのスケーリング、回転、平行移動を組み合わせてワールド行列を作成
+	DirectX::XMMATRIX translation = DirectX::XMMatrixTranslation(m_Position.x, m_Position.y, m_Position.z);
+	DirectX::XMMATRIX rotation = DirectX::XMMatrixRotationRollPitchYaw(m_Rotation.x, m_Rotation.y, m_Rotation.z);
+	DirectX::XMMATRIX scale = DirectX::XMMatrixScaling(m_Scale.x, m_Scale.y, m_Scale.z);
+
+	DirectX::XMMATRIX worldMatrixXM = scale * rotation * translation;
+	DirectX::XMStoreFloat4x4(&worldMatrix, worldMatrixXM);
+
+	if (Input::GetKeyPress(VK_LEFT)) {
+		m_Rotation.y -= 0.075f;
+	}
+	if (Input::GetKeyPress(VK_RIGHT)) {
+		m_Rotation.y += 0.075f;
+	}
+	if (Input::GetKeyPress(VK_A)) {
+		m_Velocity += right * speed;
+	}
+	if (Input::GetKeyPress(VK_D)) {
+		m_Velocity -= right * speed;
+	}
+	if (Input::GetKeyPress(VK_W)) {
+		m_Velocity += forward * speed;
+	}
+	if (Input::GetKeyPress(VK_S)) {
+		m_Velocity -= forward * speed;
+	}
 
 
 	if (m_State != 0) return;	//静止状態ならreturn
 	Vector3 oldPos = m_Position;
-
-	//速度が0に近いと停止させる
-	if (m_Velocity.LengthSquared() < 0.03f) {
-		m_StopCount++;
-
-		if (Input::GetKeyTrigger(VK_A)) {
-			m_Velocity.x -= 0.5f;
-			m_Velocity.y += 2.0f;
-		}
-		if (Input::GetKeyTrigger(VK_D)) {
-			m_Velocity.x += 0.5f;
-			m_Velocity.y += 2.0f;
-		}
-		if (Input::GetKeyTrigger(VK_W)) {
-			m_Velocity.z += 0.5f;
-			m_Velocity.y += 2.0f;
-		}
-		if (Input::GetKeyTrigger(VK_S)) {
-			m_Velocity.z -= 0.5f;
-			m_Velocity.y += 2.0f;
-		}
-	}
-	else {
-		m_StopCount = 0;
-		//減速度(1フレームあたりの減速量)
-		float decelerationPower = 0.003f;
-
-		Vector3 deceleration = -m_Velocity;	//速度の逆ベクトルを計算
-		deceleration.Normalize();
-		m_Acceralation = deceleration * decelerationPower;
-
-		//加速度を速度に加算
-		m_Velocity += m_Acceralation;
-		m_Rotation.z += 0.1f;
-	}
 
 	// 10フレーム連続でほとんど動いていなければ静止状態へ
 	if (m_StopCount > 10) {
@@ -197,24 +187,24 @@ void GolfBall::Update()
 			}
 		}
 	}
-		if (moveDistance != 9999) {	//もし当たっていたら	
-			m_Velocity.y = -gravity;
-			//std::cout << "Hit" << std::endl;
+	if (moveDistance != 9999) {	//もし当たっていたら	
+		m_Velocity.y = -gravity;
+		//std::cout << "Hit" << std::endl;
 
-			//ボールの速度ベクトルの法線方向成分を分解
-			float velocityNormal = Collision::Dot(m_Velocity, normal);
-			Vector3 v1 = velocityNormal * normal;	//法線方向成分
-			Vector3 v2 = m_Velocity - v1;	//接線方向成分
+		//ボールの速度ベクトルの法線方向成分を分解
+		float velocityNormal = Collision::Dot(m_Velocity, normal);
+		Vector3 v1 = velocityNormal * normal;	//法線方向成分
+		Vector3 v2 = m_Velocity - v1;	//接線方向成分
 
-			//反発係数
-			const float restitution = 0.55f;
+		//反発係数
+		const float restitution = 0.55f;
 
-			//反射ベクトルを計算
-			Vector3 reflectedVelocity = v2 - restitution * v1;
+		//反射ベクトルを計算
+		Vector3 reflectedVelocity = v2 - restitution * v1;
 
-			//ボールの速度を更新
-			m_Velocity = reflectedVelocity;
-		}
+		//ボールの速度を更新
+		m_Velocity = reflectedVelocity;
+	}
 
 	//下に落ちたらリスポーン
 	if (m_Position.y < -100) {
@@ -292,6 +282,6 @@ void GolfBall::Shot(Vector3 v) {
 	m_Velocity = v;
 }
 
-DirectX::SimpleMath::Vector3 GolfBall::GetlookDirection() {
-	return lookDirection;
+DirectX::SimpleMath::Vector3 GolfBall::Getforward() {
+	return forward;
 }

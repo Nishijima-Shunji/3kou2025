@@ -69,7 +69,7 @@ void Ground::Init()
 		}
 	}
 	//読み込む画像ファイルのパス
-	const char* filename = "assets/texture/terain.png";
+	const char* filename = "assets/texture/terain2.png";
 
 	//画像データを格納するポインタ
 	unsigned char* imageData = nullptr;

@@ -25,6 +25,9 @@ private:
 	int m_StopCount = 0;	//静止カウント
 	DirectX::SimpleMath::Vector3 lookDirection;
 
+	DirectX::XMFLOAT4X4 worldMatrix; // ワールド行列の保存用変数
+	DirectX::SimpleMath::Vector3 forward;	// 前方ベクトルの格納
+
 	Input input;
 
 public:
@@ -39,7 +42,7 @@ public:
 	//状態の設定・取得
 	void SetState(int s);
 	int GetState();
-	DirectX::SimpleMath::Vector3 GetlookDirection();
+	DirectX::SimpleMath::Vector3 Getforward();
 
 	//ショット
 	void Shot(DirectX::SimpleMath::Vector3 v);

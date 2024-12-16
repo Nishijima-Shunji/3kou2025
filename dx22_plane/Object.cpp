@@ -22,3 +22,7 @@ void Object::SetPosition(const Vector3& pos) {
 Vector3 Object::GetPosition() const {
 	return m_Position;
 }
+
+Vector3 Object::GetRotation() const {
+	return m_Rotation;
+}

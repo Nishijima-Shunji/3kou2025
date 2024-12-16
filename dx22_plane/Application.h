@@ -28,9 +28,9 @@ public:
         return m_hWnd;
     }
 
-private:
     static HINSTANCE   m_hInst;        // インスタンスハンドル
     static HWND        m_hWnd;         // ウィンドウハンドル
+private:
     static uint32_t    m_Width;        // ウィンドウの横幅
     static uint32_t    m_Height;       // ウィンドウの縦幅
 

@@ -25,14 +25,6 @@ void Camera::Init()
 //=======================================
 void Camera::Update()
 {
-	//左右キーでカメラ回転
-	if (Input::GetKeyPress(VK_LEFT)) {
-		m_CameraDirection += 0.02f;
-	}
-	if (Input::GetKeyPress(VK_RIGHT)) {
-		m_CameraDirection -= 0.02f;
-	}
-
 	//ゴルフボールの位置を取得
 	vector<GolfBall*> ballpt = Game::GetInstance()->GetObjects<GolfBall>();
 	if (ballpt.size() > 0) {
@@ -43,12 +35,18 @@ void Camera::Update()
 		m_Position.y = ballPos.y + 20;
 		m_Position.z = ballPos.z + cos(m_CameraDirection) * 50;*/
 
-		m_Position.x = ballPos.x;
+		/*m_Position.x = ballPos.x;
 		m_Position.y = ballPos.y + 1.0f;
-		m_Position.z = ballPos.z;
+		m_Position.z = ballPos.z;*/
+
+		float distance = 10.0f; // カメラのボールからの距離
+		m_Position.x = ballPos.x - ballpt[0]->Getforward().x * distance;
+		m_Position.y = ballPos.y + 5.0f; // 高さを少し上げる
+		m_Position.z = ballPos.z - ballpt[0]->Getforward().z * distance;
+
 
 		//カメラの注視点を更新
-		m_Target = ballPos + ballpt[0]->GetlookDirection();
+		m_Target = ballPos + ballpt[0]->Getforward();
 	}
 }
 
@@ -66,7 +64,7 @@ void Camera::Draw()
 //=======================================
 void Camera::Uninit()
 {
-
+	
 }
 
 //=======================================
@@ -120,4 +118,3 @@ void Camera::SetCamera(int mode) {
 		Renderer::SetProjectionMatrix(&projectionMatrix);
 	}
 }
-

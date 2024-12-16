@@ -97,7 +97,7 @@ void Stage1Scene::Update()
 	switch (m_State) {
 		//ボール移動中
 	case 0:
-		if (ball->GetState() == 1) {
+		if (ball && ball->GetState() == 1) {
 			m_State = 1;
 			arrow->SetState(m_State);
 			m_StrokeCount++;	//打数をカウント
