@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\DirextX_lib\assimp\5.2.5\include;C:\directxtk\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\DirextX_lib\assimp\5.2.5\lib;C:\directxtk\lib\x64\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\DirectX_lib\assimp\5.2.5\include;C:\directxtk\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\DirectX_lib\assimp\5.2.5\lib;C:\directxtk\lib\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
