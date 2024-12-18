@@ -67,45 +67,12 @@ void GolfBall::Init()
 	m_Scale.y = 0.5;
 	m_Scale.z = 0.5;
 
-	m_Position.y = 15.0f;
+	m_Position.y = 3.0f;
 }
 
 void GolfBall::Update()
 {
-	// 前方ベクトルを計算
-	forward = DirectX::SimpleMath::Vector3(worldMatrix._31, worldMatrix._32, worldMatrix._33);
-	forward.Normalize(); // 正規化
-	Vector3 right = forward.Cross(Vector3::Up); // 右方向ベクトル
-	right.Normalize();
-	float speed = 0.01f;
-
-	// ボールのスケーリング、回転、平行移動を組み合わせてワールド行列を作成
-	DirectX::XMMATRIX translation = DirectX::XMMatrixTranslation(m_Position.x, m_Position.y, m_Position.z);
-	DirectX::XMMATRIX rotation = DirectX::XMMatrixRotationRollPitchYaw(m_Rotation.x, m_Rotation.y, m_Rotation.z);
-	DirectX::XMMATRIX scale = DirectX::XMMatrixScaling(m_Scale.x, m_Scale.y, m_Scale.z);
-
-	DirectX::XMMATRIX worldMatrixXM = scale * rotation * translation;
-	DirectX::XMStoreFloat4x4(&worldMatrix, worldMatrixXM);
-
-	if (Input::GetKeyPress(VK_LEFT)) {
-		m_Rotation.y -= 0.075f;
-	}
-	if (Input::GetKeyPress(VK_RIGHT)) {
-		m_Rotation.y += 0.075f;
-	}
-	if (Input::GetKeyPress(VK_A)) {
-		m_Velocity += right * speed;
-	}
-	if (Input::GetKeyPress(VK_D)) {
-		m_Velocity -= right * speed;
-	}
-	if (Input::GetKeyPress(VK_W)) {
-		m_Velocity += forward * speed;
-	}
-	if (Input::GetKeyPress(VK_S)) {
-		m_Velocity -= forward * speed;
-	}
-
+	Move();
 
 	if (m_State != 0) return;	//静止状態ならreturn
 	Vector3 oldPos = m_Position;
@@ -115,14 +82,6 @@ void GolfBall::Update()
 		m_Velocity = Vector3(0.0f, 0.0f, 0.0f);
 		m_State = 1; //静止状態
 	}
-
-	//重力
-	const float gravity = 0.05f;
-	m_Velocity.y -= gravity;
-
-	//速度を座標に加算
-	m_Position += m_Velocity;
-
 	float radius = 0.5f;	//ボールの直径
 
 	//Groundの頂点データを取得
@@ -284,4 +243,82 @@ void GolfBall::Shot(Vector3 v) {
 
 DirectX::SimpleMath::Vector3 GolfBall::Getforward() {
 	return forward;
+}
+
+void GolfBall::Move() {
+	// キャラ移動
+	// 前方ベクトルを計算
+	forward = DirectX::SimpleMath::Vector3(worldMatrix._31, worldMatrix._32, worldMatrix._33);
+	forward.Normalize(); // 正規化
+	Vector3 right = forward.Cross(Vector3::Up); // 右方向ベクトル
+	right.Normalize();
+
+	// ボールのスケーリング、回転、平行移動を組み合わせてワールド行列を作成
+	DirectX::XMMATRIX translation = DirectX::XMMatrixTranslation(m_Position.x, m_Position.y, m_Position.z);
+	DirectX::XMMATRIX rotation = DirectX::XMMatrixRotationRollPitchYaw(m_Rotation.x, m_Rotation.y, m_Rotation.z);
+	DirectX::XMMATRIX scale = DirectX::XMMatrixScaling(m_Scale.x, m_Scale.y, m_Scale.z);
+
+	DirectX::XMMATRIX worldMatrixXM = scale * rotation * translation;
+	DirectX::XMStoreFloat4x4(&worldMatrix, worldMatrixXM);
+
+	bool isKey = false;
+
+	if (Input::GetKeyPress(VK_LEFT)) {
+		m_Rotation.y -= 0.03f;
+	}
+	if (Input::GetKeyPress(VK_RIGHT)) {
+		m_Rotation.y += 0.03f;
+	}
+
+	// 加速
+	if (Input::GetKeyPress(VK_SHIFT)) {
+		speed = basicSpeed * 1.3f;
+		maxSpeed = basicMaxSpeed * 2;
+	}
+	else {
+		// 速度と最大速度を基本に戻す
+		speed = basicSpeed;
+		maxSpeed = basicMaxSpeed;
+	}
+
+	// 移動
+	if (Input::GetKeyPress(VK_A)) {
+		m_Velocity += right * speed;
+		isKey = true;
+	}
+	if (Input::GetKeyPress(VK_D)) {
+		m_Velocity -= right * speed;
+		isKey = true;
+	}
+	if (Input::GetKeyPress(VK_W)) {
+		m_Velocity += forward * speed;
+		isKey = true;
+	}
+	if (Input::GetKeyPress(VK_S)) {
+		m_Velocity -= forward * speed;
+		isKey = true;
+	}
+
+	// 最大速度を超えないように制御
+	float currentSpeed = sqrtf(m_Velocity.x * m_Velocity.x + m_Velocity.y * m_Velocity.y + m_Velocity.z * m_Velocity.z);
+	if (currentSpeed > maxSpeed) {
+		float scale = maxSpeed / currentSpeed;
+		m_Velocity.x *= scale;
+		m_Velocity.y *= scale;
+		m_Velocity.z *= scale;
+	}
+
+	// キー入力が無い場合の減速処理
+	if (!isKey) {
+		float decay = exp(-deceleration);
+		m_Velocity.x *= decay;
+		m_Velocity.y *= decay;
+		m_Velocity.z *= decay;
+	}
+
+	// 重力
+	m_Velocity.y -= gravity;
+
+	// 速度を座標に加算
+	m_Position += m_Velocity;
 }

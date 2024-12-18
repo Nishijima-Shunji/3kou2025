@@ -8,6 +8,14 @@
 class GolfBall :public Object
 {
 private:
+	const float gravity = 0.05f;		// 重力
+	const float basicSpeed = 1.0f;		// 基本速度
+	const float basicMaxSpeed = 1.0f;	// 基本速度
+	float maxSpeed = 1.0f;				// 最大速度
+	float acceleration = 0.1f;			// 加速度
+	float deceleration = 0.2f;			// 減速度
+	float speed = 1.0f;					// 移動速度
+
 	//速度
 	DirectX::SimpleMath::Vector3 m_Velocity = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
 	//加速度
@@ -46,5 +54,7 @@ public:
 
 	//ショット
 	void Shot(DirectX::SimpleMath::Vector3 v);
+	// 移動
+	void Move();
 };
 

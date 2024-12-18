@@ -135,7 +135,7 @@ void Ground::Init()
 
 	//テクスチャロード
 	bool sts = m_Texture.Load("assets/texture/field.jpg");
-	//bool sts = m_Texture.Load("assets/texture/water.jpg");
+	// bool sts = m_Texture.Load("assets/texture/water.jpg");
 	assert(sts = true);
 
 	//マテリアル情報取得

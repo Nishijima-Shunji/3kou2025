@@ -31,6 +31,7 @@ void Stage1Scene::Init()
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Arrow>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Pole>());
+	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 
 	//UI背景
 	Texture2D* pt1 = Game::GetInstance()->AddObject<Texture2D>();
@@ -79,12 +80,14 @@ void Stage1Scene::Init()
 	pt6->SetUV(1, 1, 10, 1);
 	m_MySceneObjects.emplace_back(pt6);
 
-	GolfBall* ball = dynamic_cast<GolfBall*>(m_MySceneObjects[0]);	//ゴルフボール
-	Arrow* arrow = dynamic_cast<Arrow*>(m_MySceneObjects[2]);	//矢印
-	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);	//矢印
+	GolfBall* ball = dynamic_cast<GolfBall*>(m_MySceneObjects[0]);	// ゴルフボール
+	Arrow* arrow = dynamic_cast<Arrow*>(m_MySceneObjects[2]);		// 矢印
+	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// 
 	ball->SetState(0);	//ボールを物理挙動差せる
 	arrow->SetState(0);	//矢印を非表示
 	pole->SetPosition(0.0f, 0.0f, -3.0f);	//ポールの位置
+
+	//m_MySceneObjects[4]->SetPosition();
 }
 
 //更新
