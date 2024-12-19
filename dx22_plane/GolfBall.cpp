@@ -67,7 +67,7 @@ void GolfBall::Init()
 	m_Scale.y = 0.5;
 	m_Scale.z = 0.5;
 
-	m_Position.y = 3.0f;
+	m_Position.y = 1.0f;
 }
 
 void GolfBall::Update()
@@ -246,13 +246,6 @@ DirectX::SimpleMath::Vector3 GolfBall::Getforward() {
 }
 
 void GolfBall::Move() {
-	// キャラ移動
-	// 前方ベクトルを計算
-	forward = DirectX::SimpleMath::Vector3(worldMatrix._31, worldMatrix._32, worldMatrix._33);
-	forward.Normalize(); // 正規化
-	Vector3 right = forward.Cross(Vector3::Up); // 右方向ベクトル
-	right.Normalize();
-
 	// ボールのスケーリング、回転、平行移動を組み合わせてワールド行列を作成
 	DirectX::XMMATRIX translation = DirectX::XMMatrixTranslation(m_Position.x, m_Position.y, m_Position.z);
 	DirectX::XMMATRIX rotation = DirectX::XMMatrixRotationRollPitchYaw(m_Rotation.x, m_Rotation.y, m_Rotation.z);
@@ -260,6 +253,13 @@ void GolfBall::Move() {
 
 	DirectX::XMMATRIX worldMatrixXM = scale * rotation * translation;
 	DirectX::XMStoreFloat4x4(&worldMatrix, worldMatrixXM);
+	// キャラ移動
+	// 前方ベクトルを計算
+	forward = DirectX::SimpleMath::Vector3(worldMatrix._31, worldMatrix._32, worldMatrix._33);
+	forward.Normalize(); // 正規化
+	Vector3 right = forward.Cross(Vector3::Up); // 右方向ベクトル
+	right.Normalize();
+
 
 	bool isKey = false;
 

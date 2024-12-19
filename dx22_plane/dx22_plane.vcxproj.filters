@@ -111,6 +111,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Object\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="CCTVcam.cpp">
+      <Filter>Object\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dx11helper.h">
@@ -210,6 +213,9 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
+      <Filter>Object\h</Filter>
+    </ClInclude>
+    <ClInclude Include="CCTVcam.h">
       <Filter>Object\h</Filter>
     </ClInclude>
   </ItemGroup>
