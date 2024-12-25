@@ -1,5 +1,5 @@
 #include <memory>
-#include "GolfBall.h"
+#include "Enemy.h"
 #include "StaticMesh.h"
 #include "utility.h"
 #include "Collision.h"
@@ -11,21 +11,22 @@ using namespace DirectX::SimpleMath;
 using namespace std;
 
 //コンストラクタ
-GolfBall::GolfBall(Camera* cam) : Object(cam) {
+Enemy::Enemy(Camera* cam) : Object(cam) {
 }
 
 //デストラクタ
-GolfBall::~GolfBall() {
+Enemy::~Enemy() {
 
 }
 
-void GolfBall::Init()
+void Enemy::Init()
 {
 	// メッシュ読み込み
 	StaticMesh staticmesh;
 
 	//3Dモデルデータ
-	std::u8string modelFile = u8"assets/model/golfball2/golf_ball.obj";
+	//std::u8string modelFile = u8"assets/model/golfball2/golf_ball.obj";
+	std::u8string modelFile = u8"assets/model/golfball1/uploads_files_4439838_Golf+Ball_v1_001.fbx";
 
 	//テクスチャディレクトリ
 	std::string texDirectory = "assets/model/";
@@ -69,20 +70,10 @@ void GolfBall::Init()
 	m_Position.y = 1.0f;
 }
 
-void GolfBall::Update()
+void Enemy::Update()
 {
 	// ボールの移動
-	Move();
-
-	// カメラの切り替え
-	if (Input::GetKeyPress(VK_SPACE)) {
-		m_Camera->SetCameraState(1);
-	}
-	else if (Input::GetKeyRelease(VK_SPACE)) {
-		m_Camera->SetCameraState(0);
-	}
-
-
+	//Move();
 
 	if (m_State != 0) return;	//静止状態ならreturn
 	Vector3 oldPos = m_Position;
@@ -158,7 +149,6 @@ void GolfBall::Update()
 	}
 	if (moveDistance != 9999) {	//もし当たっていたら	
 		m_Velocity.y = -gravity;
-		//std::cout << "Hit" << std::endl;
 
 		//ボールの速度ベクトルの法線方向成分を分解
 		float velocityNormal = Collision::Dot(m_Velocity, normal);
@@ -195,7 +185,7 @@ void GolfBall::Update()
 	}
 }
 
-void GolfBall::Draw()
+void Enemy::Draw()
 {
 	// SRT情報作成
 	Matrix r = Matrix::CreateFromYawPitchRoll(m_Rotation.y, m_Rotation.x, m_Rotation.z);
@@ -212,7 +202,9 @@ void GolfBall::Draw()
 	m_MeshRenderer.BeforeDraw();
 
 	//カメラの設定を指定
-	m_Camera->SetCamera(0);
+	if (m_Camera->GetCameraState() == 0) {
+		m_Camera->SetCamera(1);
+	}
 
 	//マテリアル数分ループ 
 	for (int i = 0; i < m_subsets.size(); i++)
@@ -232,30 +224,30 @@ void GolfBall::Draw()
 	}
 }
 
-void GolfBall::Uninit()
+void Enemy::Uninit()
 {
 
 }
 
 //状態の設定・取得
-void GolfBall::SetState(int s) {
+void Enemy::SetState(int s) {
 	m_State = s;
 }
 
-int GolfBall::GetState() {
+int Enemy::GetState() {
 	return m_State;
 }
 
 //ショット
-void GolfBall::Shot(Vector3 v) {
+void Enemy::Shot(Vector3 v) {
 	m_Velocity = v;
 }
 
-DirectX::SimpleMath::Vector3 GolfBall::Getforward() {
+DirectX::SimpleMath::Vector3 Enemy::Getforward() {
 	return forward;
 }
 
-void GolfBall::Move() {
+void Enemy::Move() {
 	// ボールのスケーリング、回転、平行移動を組み合わせてワールド行列を作成
 	DirectX::XMMATRIX translation = DirectX::XMMatrixTranslation(m_Position.x, m_Position.y, m_Position.z);
 	DirectX::XMMATRIX rotation = DirectX::XMMatrixRotationRollPitchYaw(m_Rotation.x, m_Rotation.y, m_Rotation.z);

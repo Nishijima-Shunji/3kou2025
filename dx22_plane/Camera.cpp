@@ -25,29 +25,59 @@ void Camera::Init()
 //=======================================
 void Camera::Update()
 {
-	//ゴルフボールの位置を取得
-	vector<GolfBall*> ballpt = Game::GetInstance()->GetObjects<GolfBall>();
-	if (ballpt.size() > 0) {
-		Vector3 ballPos = ballpt[0]->GetPosition();
+	// カメラ追従
+	if (cameraState == 0) {
+		//ゴルフボールの位置を取得
+		vector<GolfBall*> ballpt = Game::GetInstance()->GetObjects<GolfBall>();
+		if (ballpt.size() > 0) {
+			Vector3 ballPos = ballpt[0]->GetPosition();
 
-		//カメラの位置を更新
-		/*m_Position.x = ballPos.x + sin(m_CameraDirection) * 50;
-		m_Position.y = ballPos.y + 20;
-		m_Position.z = ballPos.z + cos(m_CameraDirection) * 50;*/
-
-		/*m_Position.x = ballPos.x;
-		m_Position.y = ballPos.y + 1.0f;
-		m_Position.z = ballPos.z;*/
-
-		float distance = 10.0f; // カメラのボールからの距離
-		m_Position.x = ballPos.x - ballpt[0]->Getforward().x * distance;
-		m_Position.y = ballPos.y + 5.0f; // 高さを少し上げる
-		m_Position.z = ballPos.z - ballpt[0]->Getforward().z * distance;
+			float distance = 10.0f; // カメラのボールからの距離
+			m_Position.x = ballPos.x - ballpt[0]->Getforward().x * distance;
+			m_Position.y = ballPos.y + 5.0f; // 高さを少し上げる
+			m_Position.z = ballPos.z - ballpt[0]->Getforward().z * distance;
 
 
-		//カメラの注視点を更新
-		m_Target = ballPos + ballpt[0]->Getforward();
+			//カメラの注視点を更新
+			m_Target = ballPos + ballpt[0]->Getforward();
+		}
 	}
+	// 固定カメラ
+	if (cameraState == 1) {
+		//if (posLapse.size() < 200) {
+		//	vector<GolfBall*> ballpt = Game::GetInstance()->GetObjects<GolfBall>();
+		//	posLapse.emplace_back(ballpt[0]->GetPosition());
+		//	// ボールの forward を取得
+		//	DirectX::SimpleMath::Vector3 forward = -ballpt[0]->Getforward();
+
+		//	// カメラの回転を forward に基づいて計算
+		//	DirectX::SimpleMath::Matrix lookAtMatrix = DirectX::SimpleMath::Matrix::CreateLookAt(
+		//		DirectX::SimpleMath::Vector3::Zero,  // 視点の原点
+		//		forward,                             // 進行方向
+		//		DirectX::SimpleMath::Vector3::UnitY // 上方向
+		//	);
+
+		//	// 回転をクォータニオンとして保存
+		//	DirectX::SimpleMath::Quaternion rotation = DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(lookAtMatrix);
+		//	rotLapse.emplace_back(rotation);
+		//}
+		//else if (posLapse.size() >= 200) {
+		//	cameraState = 2;
+		//}
+	}
+	// カメラ戻る
+	if (cameraState == 2) {
+		/*if (!posLapse.empty()) {
+			m_Position = posLapse[0];
+			m_Rotation = rotLapse[0];
+			posLapse.erase(posLapse.begin());
+			rotLapse.erase(rotLapse.begin());
+		}
+		else {
+			cameraState = 0;
+		}*/
+	}
+
 }
 
 //=======================================
@@ -64,7 +94,7 @@ void Camera::Draw()
 //=======================================
 void Camera::Uninit()
 {
-	
+
 }
 
 //=======================================
@@ -118,3 +148,12 @@ void Camera::SetCamera(int mode) {
 		Renderer::SetProjectionMatrix(&projectionMatrix);
 	}
 }
+
+int Camera::GetCameraState() {
+	return cameraState;
+}
+
+void Camera::SetCameraState(int state) {
+	cameraState = state;
+}
+

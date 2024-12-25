@@ -5,6 +5,7 @@
 #include "Arrow.h"
 #include "Pole.h"
 #include "Texture2D.h"
+#include "Enemy.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -32,6 +33,7 @@ void Stage1Scene::Init()
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Arrow>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Pole>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
+	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Enemy>());
 
 	//UI背景
 	Texture2D* pt1 = Game::GetInstance()->AddObject<Texture2D>();
@@ -83,11 +85,11 @@ void Stage1Scene::Init()
 	GolfBall* ball = dynamic_cast<GolfBall*>(m_MySceneObjects[0]);	// ゴルフボール
 	Arrow* arrow = dynamic_cast<Arrow*>(m_MySceneObjects[2]);		// 矢印
 	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// 
+	Enemy* enemy = dynamic_cast<Enemy*>(m_MySceneObjects[5]);	// ゴルフボール
 	ball->SetState(0);	//ボールを物理挙動差せる
 	arrow->SetState(0);	//矢印を非表示
 	pole->SetPosition(0.0f, 0.0f, -3.0f);	//ポールの位置
-
-	//m_MySceneObjects[4]->SetPosition();
+	enemy->SetPosition(DirectX::SimpleMath::Vector3(5.0f, 5.0f, 5.0f));
 }
 
 //更新
@@ -139,12 +141,6 @@ void Stage1Scene::Update()
 		}
 		break;
 	}
-	//// エンターキーを押してリザルトへ
-	//if (Input::GetKeyTrigger(VK_RETURN))
-	//{
-	//	Game::GetInstance()->ChangeScene(RESULT);
-	//}
-
 }
 
 // 終了処理

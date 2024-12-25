@@ -111,7 +111,7 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Object\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="CCTVcam.cpp">
+    <ClCompile Include="Enemy.cpp">
       <Filter>Object\cpp</Filter>
     </ClCompile>
   </ItemGroup>
@@ -215,7 +215,7 @@
     <ClInclude Include="Camera.h">
       <Filter>Object\h</Filter>
     </ClInclude>
-    <ClInclude Include="CCTVcam.h">
+    <ClInclude Include="Enemy.h">
       <Filter>Object\h</Filter>
     </ClInclude>
   </ItemGroup>

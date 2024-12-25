@@ -25,20 +25,9 @@ void Game::Init()
 	// 描画初期化
 	Renderer::Init();
 
-	// オブジェクト配列作成
-	//m_Instance->m_Objects.emplace_back(new GolfBall);
-	//m_Instance->m_Objects.emplace_back(new Ground);
-
 	// カメラ初期化
 	m_Instance->m_Camera->Init();
 	m_Instance->m_Scene = new TitleScene; //メモリを確保
-
-	// オブジェクト初期化
-	// (※AddObject関数で実行するように変更）
-	//for (auto& o : m_Instance->m_Objects)
-	//{
-	//	o->Init();
-	//}
 }
 
 // 更新
@@ -84,13 +73,6 @@ void Game::Uninit()
 {
 	//オブジェクトを全て削除
 	m_Instance->DeleteAllObject();
-
-	// オブジェクト終了処理
- 	// (※DeleteObject関数で実行するように変更）
-	//for (auto& o : m_Instance->m_Objects)
-	//{
-	//	o->Uninit();
-	//}
 
 	// カメラ終了処理
 	m_Instance->m_Camera->Uninit();

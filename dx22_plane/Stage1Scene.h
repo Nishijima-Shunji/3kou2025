@@ -15,7 +15,6 @@ private:
 
 	int m_Par;	//パー
 	int m_StrokeCount;	// 現在の打数
-
 public:
 	Stage1Scene(); // コンストラクタ
 	~Stage1Scene(); // デストラクタ
