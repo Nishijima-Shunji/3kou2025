@@ -1,5 +1,5 @@
 #pragma once
-//#include <vector>
+
 #include	<SimpleMath.h>
 
 //-----------------------------------------------------------------------------
@@ -16,11 +16,6 @@ private:
 
 	float m_CameraDirection = 0;	//ƒJƒƒ‰‚Ì•ûŒü
 
-	int cameraState = 0;
-
-	std::vector<DirectX::SimpleMath::Vector3> posLapse;
-	std::vector<DirectX::SimpleMath::Vector3> rotLapse;
-
 public:
 
 	void Init();
@@ -29,6 +24,4 @@ public:
 	void Uninit();
 
 	void SetCamera(int mode);
-	int GetCameraState();
-	void SetCameraState(int state);
 };

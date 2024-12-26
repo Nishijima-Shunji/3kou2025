@@ -12,6 +12,7 @@ using namespace std;
 
 //コンストラクタ
 GolfBall::GolfBall(Camera* cam) : Object(cam) {
+
 }
 
 //デストラクタ
@@ -71,18 +72,7 @@ void GolfBall::Init()
 
 void GolfBall::Update()
 {
-	// ボールの移動
 	Move();
-
-	// カメラの切り替え
-	if (Input::GetKeyPress(VK_SPACE)) {
-		m_Camera->SetCameraState(1);
-	}
-	else if (Input::GetKeyRelease(VK_SPACE)) {
-		m_Camera->SetCameraState(0);
-	}
-
-
 
 	if (m_State != 0) return;	//静止状態ならreturn
 	Vector3 oldPos = m_Position;
@@ -270,9 +260,7 @@ void GolfBall::Move() {
 	Vector3 right = forward.Cross(Vector3::Up); // 右方向ベクトル
 	right.Normalize();
 
-	// 移動方向
-	Vector3 direction(0, 0, 0);
-	// キー入力中か判断
+
 	bool isKey = false;
 
 	if (Input::GetKeyPress(VK_LEFT)) {
@@ -295,29 +283,21 @@ void GolfBall::Move() {
 
 	// 移動
 	if (Input::GetKeyPress(VK_A)) {
-		direction += right;		// 左方向を加算
+		m_Velocity += right * speed;
 		isKey = true;
 	}
 	if (Input::GetKeyPress(VK_D)) {
-		direction -= right;		// 右方向を加算
+		m_Velocity -= right * speed;
 		isKey = true;
 	}
 	if (Input::GetKeyPress(VK_W)) {
-		direction += forward;	// 前方向を加算
+		m_Velocity += forward * speed;
 		isKey = true;
 	}
 	if (Input::GetKeyPress(VK_S)) {
-		direction -= forward;	// 後方向を加算
+		m_Velocity -= forward * speed;
 		isKey = true;
 	}
-
-	// 移動方向の正規化
-	if (direction.LengthSquared() > 0) {
-		direction.Normalize();
-	}
-
-	// 速度の加算
-	m_Velocity += direction * speed;
 
 	// 最大速度を超えないように制御
 	float currentSpeed = sqrtf(m_Velocity.x * m_Velocity.x + m_Velocity.y * m_Velocity.y + m_Velocity.z * m_Velocity.z);

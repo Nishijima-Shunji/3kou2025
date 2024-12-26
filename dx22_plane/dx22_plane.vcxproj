@@ -146,9 +146,9 @@
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="AssimpPerse.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CCTVcam.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="dx11helper.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GolfBall.cpp" />
     <ClCompile Include="Ground.cpp" />
@@ -180,9 +180,9 @@
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="AssimpPerse.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CCTVcam.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="dx11helper.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GolfBall.h" />
     <ClInclude Include="Ground.h" />

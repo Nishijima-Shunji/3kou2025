@@ -28,5 +28,4 @@ public:
 	void SetPosition(const DirectX::SimpleMath::Vector3& pos);
 	DirectX::SimpleMath::Vector3 GetPosition() const;
 	DirectX::SimpleMath::Vector3 GetRotation() const;
-	Camera* GetCamera() const { return m_Camera; }
 };

@@ -5,8 +5,11 @@
 #include "Arrow.h"
 #include "Pole.h"
 #include "Texture2D.h"
+<<<<<<< HEAD
 #include "Enemy.h"
 #include "Map.h"
+=======
+>>>>>>> parent of 7158462 (ã‚«ãƒ¡ãƒ©ã®è¦–ç‚¹å¤‰æ›´ã¨æ•µã®æç”»åˆ‡ã‚Šæ›¿ãˆå®Ÿè£…)
 
 using namespace DirectX::SimpleMath;
 
@@ -33,9 +36,13 @@ void Stage1Scene::Init()
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Arrow>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Pole>());
+<<<<<<< HEAD
 	//m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Enemy>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Map>());
+=======
+	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
+>>>>>>> parent of 7158462 (ã‚«ãƒ¡ãƒ©ã®è¦–ç‚¹å¤‰æ›´ã¨æ•µã®æç”»åˆ‡ã‚Šæ›¿ãˆå®Ÿè£…)
 
 	//UI”wŒi
 	Texture2D* pt1 = Game::GetInstance()->AddObject<Texture2D>();
@@ -86,13 +93,18 @@ void Stage1Scene::Init()
 
 	GolfBall* ball = dynamic_cast<GolfBall*>(m_MySceneObjects[0]);	// ƒSƒ‹ƒtƒ{[ƒ‹
 	Arrow* arrow = dynamic_cast<Arrow*>(m_MySceneObjects[2]);		// –îˆó
+<<<<<<< HEAD
 	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// ƒS[ƒ‹
 	Enemy* enemy = dynamic_cast<Enemy*>(m_MySceneObjects[4]);		// “G
 	Map* map = dynamic_cast<Map*>(m_MySceneObjects[5]);		// “G
+=======
+	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// 
+>>>>>>> parent of 7158462 (ã‚«ãƒ¡ãƒ©ã®è¦–ç‚¹å¤‰æ›´ã¨æ•µã®æç”»åˆ‡ã‚Šæ›¿ãˆå®Ÿè£…)
 	ball->SetState(0);	//ƒ{[ƒ‹‚ð•¨—‹““®·‚¹‚é
 	arrow->SetState(0);	//–îˆó‚ð”ñ•\Ž¦
 	pole->SetPosition(0.0f, 0.0f, -3.0f);	//ƒ|[ƒ‹‚ÌˆÊ’u
-	enemy->SetPosition(DirectX::SimpleMath::Vector3(5.0f, 5.0f, 5.0f));
+
+	//m_MySceneObjects[4]->SetPosition();
 }
 
 //XV
@@ -144,6 +156,12 @@ void Stage1Scene::Update()
 		}
 		break;
 	}
+	//// ƒGƒ“ƒ^[ƒL[‚ð‰Ÿ‚µ‚ÄƒŠƒUƒ‹ƒg‚Ö
+	//if (Input::GetKeyTrigger(VK_RETURN))
+	//{
+	//	Game::GetInstance()->ChangeScene(RESULT);
+	//}
+
 }
 
 // I—¹ˆ—
