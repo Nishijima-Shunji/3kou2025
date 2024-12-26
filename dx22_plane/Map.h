@@ -24,6 +24,8 @@ private:
 	std::vector<std::unique_ptr<Texture>> m_Textures; // テクスチャ
 
 public:
+	Map();
+	~Map();
 	void Init();
 	void Update();
 	void Draw();

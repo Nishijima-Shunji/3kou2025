@@ -10,6 +10,14 @@
 
 using namespace DirectX::SimpleMath;
 
+Map::Map() {
+	Init();
+}
+
+Map::~Map() {
+
+}
+
 void Map::Init()
 {
 	// ƒƒbƒVƒ…“Ç‚İ‚İ

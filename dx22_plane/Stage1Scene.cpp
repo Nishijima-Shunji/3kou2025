@@ -5,14 +5,8 @@
 #include "Arrow.h"
 #include "Pole.h"
 #include "Texture2D.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "Enemy.h"
-#include "Map.h"
-=======
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
-=======
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
+
 
 using namespace DirectX::SimpleMath;
 
@@ -39,17 +33,10 @@ void Stage1Scene::Init()
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Arrow>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Pole>());
-<<<<<<< HEAD
-<<<<<<< HEAD
-	//m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Enemy>());
-	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Map>());
-=======
-	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
-=======
-	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
+	//map = new Map;
+	
+	//m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Map>());
 
 	//UI�w�i
 	Texture2D* pt1 = Game::GetInstance()->AddObject<Texture2D>();
@@ -100,21 +87,12 @@ void Stage1Scene::Init()
 
 	GolfBall* ball = dynamic_cast<GolfBall*>(m_MySceneObjects[0]);	// �S���t�{�[��
 	Arrow* arrow = dynamic_cast<Arrow*>(m_MySceneObjects[2]);		// ���
-<<<<<<< HEAD
 	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// �S�[��
 	Enemy* enemy = dynamic_cast<Enemy*>(m_MySceneObjects[4]);		// �G
-	Map* map = dynamic_cast<Map*>(m_MySceneObjects[5]);		// �G
-=======
-	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// 
-<<<<<<< HEAD
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
-=======
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
+	//Map* map = dynamic_cast<Map*>(m_MySceneObjects[5]);				// �G
 	ball->SetState(0);	//�{�[���𕨗�����������
 	arrow->SetState(0);	//�����\��
 	pole->SetPosition(0.0f, 0.0f, -3.0f);	//�|�[���̈ʒu
-
-	//m_MySceneObjects[4]->SetPosition();
 }
 
 //�X�V
@@ -122,7 +100,7 @@ void Stage1Scene::Update()
 {
 	GolfBall* ball = dynamic_cast<GolfBall*>(m_MySceneObjects[0]);	//�S���t�{�[��
 	Arrow* arrow = dynamic_cast<Arrow*>(m_MySceneObjects[2]);	//���
-
+	//map->Update();
 	//��Ԃ��Ƃɏ���
 	switch (m_State) {
 		//�{�[���ړ���
@@ -166,12 +144,6 @@ void Stage1Scene::Update()
 		}
 		break;
 	}
-	//// �G���^�[�L�[�������ă��U���g��
-	//if (Input::GetKeyTrigger(VK_RETURN))
-	//{
-	//	Game::GetInstance()->ChangeScene(RESULT);
-	//}
-
 }
 
 // �I������

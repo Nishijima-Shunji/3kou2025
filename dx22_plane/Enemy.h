@@ -5,15 +5,15 @@
 #include "Material.h"
 #include "input.h"
 
-class GolfBall :public Object
+class Enemy :public Object
 {
 private:
 	const float gravity = 0.05f;		// 重力
-	const float basicSpeed = 0.3f;		// 基本速度
-	const float basicMaxSpeed = 0.5f;	// 基本速度
+	const float basicSpeed = 1.0f;		// 基本速度
+	const float basicMaxSpeed = 1.0f;	// 基本速度
 	float maxSpeed = 1.0f;				// 最大速度
-	float acceleration = 0.03f;			// 加速度
-	float deceleration = 0.5f;			// 減速度
+	float acceleration = 0.1f;			// 加速度
+	float deceleration = 0.2f;			// 減速度
 	float speed = 1.0f;					// 移動速度
 
 	//速度
@@ -39,8 +39,8 @@ private:
 	Input input;
 
 public:
-	GolfBall(Camera* cam);	//コンストラクタ
-	~GolfBall();			//デストラクタ
+	Enemy(Camera* cam);	//コンストラクタ
+	~Enemy();			//デストラクタ
 
 	void Init();
 	void Update();
