@@ -6,8 +6,11 @@
 #include "Pole.h"
 #include "Texture2D.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "Enemy.h"
 #include "Map.h"
+=======
+>>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
 =======
 >>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
 
@@ -37,9 +40,13 @@ void Stage1Scene::Init()
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Arrow>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Pole>());
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Enemy>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Map>());
+=======
+	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
+>>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
 =======
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 >>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
@@ -99,6 +106,9 @@ void Stage1Scene::Init()
 	Map* map = dynamic_cast<Map*>(m_MySceneObjects[5]);		// �G
 =======
 	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// 
+<<<<<<< HEAD
+>>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
+=======
 >>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
 	ball->SetState(0);	//�{�[���𕨗�����������
 	arrow->SetState(0);	//�����\��

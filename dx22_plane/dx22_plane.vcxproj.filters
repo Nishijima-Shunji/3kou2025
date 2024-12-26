@@ -112,9 +112,12 @@
       <Filter>Object\cpp</Filter>
     </ClCompile>
     <ClCompile Include="CCTVcam.cpp">
+<<<<<<< HEAD
       <Filter>Object\cpp</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
+=======
+>>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
       <Filter>Object\cpp</Filter>
     </ClCompile>
   </ItemGroup>
@@ -219,9 +222,12 @@
       <Filter>Object\h</Filter>
     </ClInclude>
     <ClInclude Include="CCTVcam.h">
+<<<<<<< HEAD
       <Filter>Object\h</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
+=======
+>>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
       <Filter>Object\h</Filter>
     </ClInclude>
   </ItemGroup>
