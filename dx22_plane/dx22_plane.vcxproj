@@ -153,6 +153,7 @@
     <ClCompile Include="GolfBall.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Pole.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="GolfBall.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />

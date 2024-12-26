@@ -114,6 +114,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Object\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Object\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dx11helper.h">
@@ -216,6 +219,9 @@
       <Filter>Object\h</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
+      <Filter>Object\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
       <Filter>Object\h</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,6 +6,7 @@
 #include "Pole.h"
 #include "Texture2D.h"
 #include "Enemy.h"
+#include "Map.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -32,8 +33,9 @@ void Stage1Scene::Init()
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Arrow>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Pole>());
-	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
+	//m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Ground>());
 	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Enemy>());
+	m_MySceneObjects.emplace_back(Game::GetInstance()->AddObject<Map>());
 
 	//UI背景
 	Texture2D* pt1 = Game::GetInstance()->AddObject<Texture2D>();
@@ -84,8 +86,9 @@ void Stage1Scene::Init()
 
 	GolfBall* ball = dynamic_cast<GolfBall*>(m_MySceneObjects[0]);	// ゴルフボール
 	Arrow* arrow = dynamic_cast<Arrow*>(m_MySceneObjects[2]);		// 矢印
-	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// 
-	Enemy* enemy = dynamic_cast<Enemy*>(m_MySceneObjects[5]);	// ゴルフボール
+	Pole* pole = dynamic_cast<Pole*>(m_MySceneObjects[3]);			// ゴール
+	Enemy* enemy = dynamic_cast<Enemy*>(m_MySceneObjects[4]);		// 敵
+	Map* map = dynamic_cast<Map*>(m_MySceneObjects[5]);		// 敵
 	ball->SetState(0);	//ボールを物理挙動差せる
 	arrow->SetState(0);	//矢印を非表示
 	pole->SetPosition(0.0f, 0.0f, -3.0f);	//ポールの位置
