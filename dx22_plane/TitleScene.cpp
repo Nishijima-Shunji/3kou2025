@@ -24,11 +24,30 @@ void TitleScene::Init()
 	pt->SetRotation(0.0f,0.0f,0.0f);
 	pt->SetScale(1280.0f,720.0f,0.0f);
 	m_MySceneObjects.emplace_back(pt);
+
+	Texture2D* pt2 = Game::GetInstance()->AddObject<Texture2D>();
+	pt2->SetTexture("assets/texture/title.png");
+	pt2->SetPosition(-1000.0f, 50.0f, 0.0f);
+	pt2->SetRotation(0.0f, 0.0f, 0.0f);
+	pt2->SetScale(600.0f, 600.0f, 0.0f);
+	m_MySceneObjects.emplace_back(pt2);
+
+	state = 0;
 }
 
 // 更新
 void TitleScene::Update()
 {
+	Texture2D* tex = dynamic_cast<Texture2D*>(m_MySceneObjects[1]);
+	if (state == 0) {
+		auto position = tex->GetPosition();
+		position.x += 10.0f; // X軸の位置を更新
+		tex->SetPosition(position.x, 50.0f, 0.0f);
+
+		if (position.x > 0.0f) {
+			state = 1;
+		}
+	}
 	// エンターキーを押してステージ1へ
 	if (Input::GetKeyTrigger(VK_RETURN))
 	{

@@ -6,11 +6,12 @@
 #include	"Texture.h"
 #include	"StaticMesh.h"
 #include	"utility.h"
+#include    "Game.h"
 
 
 using namespace DirectX::SimpleMath;
 
-Map::Map() {
+Map::Map(Camera* cam) :Object(cam) {
 	Init();
 }
 
@@ -24,8 +25,8 @@ void Map::Init()
 	StaticMesh staticmesh;
 
 	//3Dモデルデータ
-	std::u8string modelFile = u8"assets/model/map/map.fbx";
-
+	std::u8string modelFile = u8"assets/model/map/map.obj";
+		
 	//テクスチャディレクトリ
 	std::string texDirectory = "assets/model/";
 
@@ -46,6 +47,7 @@ void Map::Init()
 
 	//マテリアル情報取得
 	std::vector<MATERIAL> materials = staticmesh.GetMaterials();
+	m_Vertices = staticmesh.GetVertices();
 
 	//マテリアル数分ループ
 	for (int i = 0; i < materials.size(); i++) {
@@ -58,13 +60,24 @@ void Map::Init()
 		//マテリアルオブジェクトを配列に追加
 		m_Materiales.push_back(std::move(m));
 	}
+
+	//頂点情報を変換しておく
+	Matrix r = Matrix::CreateFromYawPitchRoll(m_Rotation.y, m_Rotation.x, m_Rotation.z);
+	Matrix t = Matrix::CreateTranslation(m_Position.x, m_Position.y, m_Position.z);
+	Matrix s = Matrix::CreateScale(m_Scale.x, m_Scale.y, m_Scale.z);
+	Matrix worldmtx = s * r * t;
+	for (int i = 0; i < m_Vertices.size(); i++) {
+		m_Vertices[i].position = Vector3::Transform(m_Vertices[i].position, worldmtx);
+		m_Vertices[i].normal = Vector3::Transform(m_Vertices[i].normal, worldmtx);
+	}
 }
 void Map::Update()
 {
-	m_Rotation.y += -0.01f;
-	m_Scale.x = 5;
-	m_Scale.y = 5;
-	m_Scale.z = 5;
+	//m_Rotation.x = 7.85f;
+	//std::cout << m_Rotation.x << std::endl;
+	m_Scale.x = 0.01f;
+	m_Scale.y = 0.01f;
+	m_Scale.z = 0.01f;
 }
 
 
@@ -105,4 +118,8 @@ void Map::Draw()
 void Map::Uninit()
 {
 
+}
+
+std::vector<VERTEX_3D> Map::GetVertices() {
+	return m_Vertices;
 }

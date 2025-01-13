@@ -19,7 +19,8 @@ private:
 	std::vector<SUBSET> m_subsets;
 	std::vector<std::unique_ptr<Texture>> m_Textures; // テクスチャ
 
-	int m_State = 0; // 0:非表示・1:方向選択・2:パワー選択
+	int m_State = 0;
+	int m_num = 0;
 
 public:
 
@@ -34,5 +35,8 @@ public:
 	// 位置の設定
 	void SetPosition(float x, float y, float z);
 	void SetPosition(DirectX::SimpleMath::Vector3 pos);
+
+	int Getnum();
+	void Setnum(int);
 };
 

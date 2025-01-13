@@ -1,76 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{1f28a23a-d195-4005-b29f-6ecd271a75bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{dd85e3dc-687d-4eb2-bec0-0ade95edb516}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\h">
-      <UniqueIdentifier>{e890dce6-972d-4841-9d06-df4910f6c8f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\cpp">
-      <UniqueIdentifier>{51324426-659a-45c9-8579-48ea39dd4b87}</UniqueIdentifier>
-    </Filter>
+    <FxCompile Include="shader\common.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\WavePS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\WaveVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\unlitTexturePS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\unlitTextureVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\litTexturePS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\litTextureVS.hlsl">
+      <Filter>shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dx11helper.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="AssimpPerse.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="dx11helper.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="input.cpp" />
+    <ClCompile Include="StaticMesh.cpp" />
+    <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="utility.cpp" />
+    <ClCompile Include="Wave.cpp" />
+    <ClCompile Include="TestCube.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="TestModel.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="TestPlane.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Pole.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="stb_image.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Map.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="utility.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="GolfBall.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="AssimpPerse.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="StaticMesh.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Arrow.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Wave.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
@@ -81,177 +82,93 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Arrow.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="GolfBall.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Pole.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="TestCube.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="TestModel.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="TestPlane.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="CCTVcam.cpp">
-<<<<<<< HEAD
-      <Filter>Object\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-=======
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
-      <Filter>Object\cpp</Filter>
+    <ClCompile Include="Num.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dx11helper.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="IndexBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="utility.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="AssimpPerse.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshRenderer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticMesh.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Wave.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="AssimpPerse.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="dx11helper.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshRenderer.h" />
+    <ClInclude Include="StaticMesh.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="utility.h" />
+    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="Wave.h" />
     <ClInclude Include="Arrow.h">
-      <Filter>Object\h</Filter>
+      <Filter>Object\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object\headder</Filter>
     </ClInclude>
     <ClInclude Include="GolfBall.h">
-      <Filter>Object\h</Filter>
+      <Filter>Object\headder</Filter>
     </ClInclude>
     <ClInclude Include="Ground.h">
-      <Filter>Object\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Pole.h">
-      <Filter>Object\h</Filter>
-    </ClInclude>
-    <ClInclude Include="TestCube.h">
-      <Filter>Object\h</Filter>
-    </ClInclude>
-    <ClInclude Include="TestModel.h">
-      <Filter>Object\h</Filter>
-    </ClInclude>
-    <ClInclude Include="TestPlane.h">
-      <Filter>Object\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Object\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage1Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Object\h</Filter>
-    </ClInclude>
-    <ClInclude Include="CCTVcam.h">
-<<<<<<< HEAD
-      <Filter>Object\h</Filter>
+      <Filter>Object\headder</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-=======
->>>>>>> parent of 7158462 (カメラの視点変更と敵の描画切り替え実装)
-      <Filter>Object\h</Filter>
+      <Filter>Object\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="Pole.h">
+      <Filter>Object\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="TestCube.h">
+      <Filter>Object\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="TestModel.h">
+      <Filter>Object\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPlane.h">
+      <Filter>Object\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>Scene\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1Scene.h">
+      <Filter>Scene\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Scene\headder</Filter>
+    </ClInclude>
+    <ClInclude Include="Num.h">
+      <Filter>Object\headder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shader\common.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="shader\unlitTexturePS.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="shader\unlitTextureVS.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="shader\litTexturePS.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="shader\litTextureVS.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="shader\WavePS.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="shader\WaveVS.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
+    <Filter Include="Object">
+      <UniqueIdentifier>{037628d6-3181-4f20-a479-ded07bc797ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\headder">
+      <UniqueIdentifier>{61adcd14-a168-4876-b6a6-30209f15f487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9d0ba76f-d0fd-48a3-92b7-1419f3081d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\headder">
+      <UniqueIdentifier>{ebe38b7c-e8a5-4f50-9fea-8b2cb5346abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{48278f93-af97-4891-9f0d-86c65a34da5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

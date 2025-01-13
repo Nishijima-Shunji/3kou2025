@@ -6,13 +6,14 @@
 #include "StaticMesh.h"
 #include "utility.h"
 #include "Material.h"
+#include "Object.h"
 
-class Map {
+class Map :public Object {
 private:
 	// SRT情報（姿勢情報）
-	DirectX::SimpleMath::Vector3 m_Position = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
+	/*DirectX::SimpleMath::Vector3 m_Position = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
 	DirectX::SimpleMath::Vector3 m_Rotation = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
-	DirectX::SimpleMath::Vector3 m_Scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f);
+	DirectX::SimpleMath::Vector3 m_Scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f);*/
 
 	// 描画の為の情報（メッシュに関わる情報）
 	MeshRenderer m_MeshRenderer; // 頂点バッファ・インデックスバッファ・インデックス数
@@ -23,11 +24,16 @@ private:
 	Shader m_Shader; // シェーダー
 	std::vector<std::unique_ptr<Texture>> m_Textures; // テクスチャ
 
+	std::vector<VERTEX_3D> m_Vertices;	//頂点情報
+
 public:
-	Map();
+	Map(Camera* cam);
 	~Map();
 	void Init();
 	void Update();
 	void Draw();
 	void Uninit();
+
+	std::vector<VERTEX_3D> GetVertices();
+
 };

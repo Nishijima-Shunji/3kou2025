@@ -24,18 +24,19 @@ void ResultScene::Init()
 	pt->SetScale(1280.0f, 720.0f, 0.0f);
 	m_MySceneObjects.emplace_back(pt);
 
-	//背景オブジェクトを作成
+	// 背景オブジェクトを作成
 	Texture2D* pt2 = Game::GetInstance()->AddObject<Texture2D>();
 	pt2->SetTexture("assets/texture/resultString.png");
 	pt2->SetPosition(300.0f, 0.0f, 0.0f);
-	pt2->SetScale(700.0f, 100.0f, 0.0f);
+	//pt2->SetScale(700.0f, 100.0f, 0.0f);
+	pt2->SetScale(0.0f, 0.0f, 0.0f);
 	pt2->SetUV(1, 1, 1, 13);
 	m_MySceneObjects.emplace_back(pt2);
 
 	Texture2D* pt3 = Game::GetInstance()->AddObject<Texture2D>();
-	pt3->SetTexture("assets/texture/ui_back.png");
-	pt3->SetPosition(-300.0f, 0.0f, 0.0f);
-	pt3->SetScale(361.0f, 400.0f, 0.0f);
+	pt3->SetTexture("assets/texture/gameclear.png");
+	pt3->SetPosition(0.0f, 0.0f, 0.0f);
+	pt3->SetScale(600.0f, 600.0f, 0.0f);
 	m_MySceneObjects.emplace_back(pt3);
 }
 

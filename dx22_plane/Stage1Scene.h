@@ -1,13 +1,11 @@
 #pragma once
 #include "Scene.h"
 #include "Object.h"
-#include "Map.h"
 
 // Stage1Scenクラス
 class Stage1Scene : public Scene
 {
 private:
-	//Map* map;
 	std::vector<Object*> m_MySceneObjects; // このシーンのオブジェクト
 
 	int m_State = 0;	//状態　0:ボール移動中, 1:方向選択中, 2:パワー選択中

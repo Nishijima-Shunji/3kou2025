@@ -10,6 +10,7 @@ private:
 
 	void Init(); // 初期化
 	void Uninit(); // 終了処理
+	int state = 0;
 
 public:
 	TitleScene(); // コンストラクタ

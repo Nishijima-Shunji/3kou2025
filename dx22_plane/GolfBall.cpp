@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "Ground.h"
 #include "Pole.h"
+#include "Map.h"
 
 using namespace DirectX::SimpleMath;
 using namespace std;
@@ -67,7 +68,9 @@ void GolfBall::Init()
 	m_Scale.y = 0.5;
 	m_Scale.z = 0.5;
 
-	m_Position.y = 1.0f;
+	m_Position.x = -25.0f;
+	m_Position.y = 10.0f;
+	m_Position.z = -25.0f;
 }
 
 void GolfBall::Update()
@@ -94,6 +97,7 @@ void GolfBall::Update()
 
 	//Groundの頂点データを取得
 	vector<Ground*>grounds = Game::GetInstance()->GetObjects<Ground>();
+	//vector<Map*>grounds = Game::GetInstance()->GetObjects<Map>();
 	vector<VERTEX_3D> vertices;
 	for (auto& g : grounds) {
 		vector<VERTEX_3D> vecs = g->GetVertices();
@@ -174,21 +178,26 @@ void GolfBall::Update()
 	}
 
 	//下に落ちたらリスポーン
-	if (m_Position.y < -100) {
-		m_Position = Vector3(0.0f, 50.0f, 0.0f);
+	if (m_Position.y < -10) {
+		m_Position = Vector3(0.0f, 30.0f, 0.0f);
 		m_Velocity = Vector3(0.0f, 0.0f, 0.0f);
 	}
 
 	//Poleの位置を取得
 	vector<Pole*> pole = Game::GetInstance()->GetObjects<Pole>();
 	if (pole.size() > 0) {
-		Vector3 polePos = pole[0]->GetPosition();
+		Vector3 polePos = pole[numcount]->GetPosition();
 
 		Collision::Sphere balCollision = { m_Position, radius };
 		Collision::Sphere poleCollision = { polePos, 0.5f };
 
 		if (Collision::CheckHit(balCollision, poleCollision)) {
-			m_State = 2;	//カップイン
+			//m_State = 2;	//カップイン
+			numcount++;
+			if (numcount == 6) {
+				m_State = 2;
+			}
+
 		}
 	}
 }
@@ -294,18 +303,23 @@ void GolfBall::Move() {
 	if (Input::GetKeyPress(VK_A)) {
 		direction += right;
 		isKey = true;
+		m_Rotation.z += 0.3f;
+		
 	}
 	if (Input::GetKeyPress(VK_D)) {
 		direction -= right;
 		isKey = true;
+		m_Rotation.z -= 0.3f;
 	}
 	if (Input::GetKeyPress(VK_W)) {
 		direction += forward;
 		isKey = true;
+		// m_Rotation.x += 0.1f;
 	}
 	if (Input::GetKeyPress(VK_S)) {
 		direction -= forward;
 		isKey = true;
+		// m_Rotation.x -= 0.1f;
 	}
 
 

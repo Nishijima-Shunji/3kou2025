@@ -14,7 +14,7 @@ using namespace std;
 //=======================================
 void Camera::Init()
 {
-	m_Position = Vector3(0.0f, 20.0f, -50.0f);
+	m_Position = Vector3(0.0f, 5.0f, -50.0f);
 	m_Target = Vector3(0.0f, 0.0f, 0.0f);
 	m_CameraDirection = 3.14f;
 }
@@ -56,7 +56,7 @@ void Camera::Update()
 
 			float distance = 10.0f; 
 			m_Position.x = ballPos.x - ballpt[0]->Getforward().x * distance;
-			m_Position.y = ballPos.y + 5.0f; 
+			m_Position.y = ballPos.y + 2.5f; 
 			m_Position.z = ballPos.z - ballpt[0]->Getforward().z * distance;
 
 
